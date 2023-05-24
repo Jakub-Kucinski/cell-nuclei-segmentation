@@ -1,7 +1,7 @@
 [tool.kedro]
 package_name = "cell_nuclei_segmentation"
 project_name = "cell-nuclei-segmentation"
-kedro_init_version = "0.18.8"
+kedro_init_version = "0.18.5"
 
 [tool.isort]
 profile = "black"
@@ -25,7 +25,14 @@ readme = "README.md"
 
 [tool.poetry.dependencies]
 python = ">=3.9,<3.11"
-kedro = "^0.18.8"
+torch = "^1.13.1"
+numpy = "^1.24.2"
+wandb = "^0.13.10"
+kedro = "^0.18.5"
+dvc = {extras = ["s3"], version = "^2.45.1"}
+pytorch-lightning = {extras = ["tensorboardX"], version = "^1.9.4"}
+torchvision = "^0.14.1"
+fsspec = ">=2021.4,<2023.1.1"
 
 [tool.poetry.group.test]
 optional = true
