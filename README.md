@@ -40,20 +40,20 @@
 # Installation
 
 ## Environment setup
-```shell
-conda env create  --file conda.yml
-conda activate cell_nuclei_segmentation
-```
 
-For installing only the packages that are necessary for running the project, you should use the following command:
-```shell
-poetry install
-```
+### Requirements
 
-If you want to include packages used for testing, linting and development, run the following command:
-```shell
-poetry install --with test,lint,dev
-```
+We strongly recommend using Linux as OS and VS Code as code editor.
+In order to run following code the machine must meet following requirements:
+- `Docker` installed (https://docs.docker.com/engine/install/ubuntu/#installation-methods)
+- `Dev Containers` extension installed in VS Code (https://code.visualstudio.com/docs/devcontainers/tutorial#_install-the-extension)
+
+### Opening DevContainer
+
+In VS Code open Comman Palette (`Ctrl+Alt+P`) and type 'Open Folder in Container`. Choose following command and select directory with project. Wait for all the software to install.
+
+In order to rebuild container to e.g. apply changes in environment type `Rebuild Container` in Comman Palette.
+
 
 ## Dependencies update
 
