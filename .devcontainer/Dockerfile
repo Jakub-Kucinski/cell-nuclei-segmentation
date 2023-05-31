@@ -1,7 +1,8 @@
-FROM python:3.10-slim-bullseye
+FROM nvidia/cuda:11.7.1-devel-ubuntu22.04
 
 # Install git
-RUN apt-get -y update && apt-get install -y git
+RUN apt-get -y update && apt-get install -y git \
+    python3.10 pip
 
 #Install poetry
 RUN pip install poetry
