@@ -12,3 +12,7 @@ ENV POETRY_VIRTUALENVS_CREATE=false
 # Install dependencies
 COPY pyproject.toml .
 RUN poetry install --with test,lint,dev --no-interaction
+
+# Install pre-commit
+COPY .pre-commit-config.yaml .
+ENTRYPOINT pre-commit install && pre-commit autoupdate
