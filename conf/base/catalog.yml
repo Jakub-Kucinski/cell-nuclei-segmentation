@@ -1,0 +1,6 @@
+CellNucleiRaw:
+  type: cell_nuclei_segmentation.extras.datasets.cell_nuclei_datasets.CellNucleiRawDataset
+  path: data/01_raw/dataset
+  save_args:
+    source: website
+    url: https://www.ebi.ac.uk/biostudies/files/S-BSST265/dataset.zip

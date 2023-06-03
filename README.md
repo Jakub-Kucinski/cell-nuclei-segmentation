@@ -8,10 +8,17 @@
 - [Nuclear images dataset](#nuclear-images-dataset)
 - [Libraries and tools](#libraries-and-tools)
 - [Installation](#installation)
+  - [Development in VS Code DevContainer](#development-in-vs-code-devcontainer)
+    - [Requirements](#requirements)
+      - [Docker](#docker)
+      - [NVIDIA drivers](#nvidia-drivers)
+      - [NVIDIA docker](#nvidia-docker)
+      - [VS Code](#vs-code)
   - [Environment setup](#environment-setup)
-  - [Dependencies update](#dependencies-update)
-  - [Pre-commit installation](#pre-commit-installation)
-  - [AWS access configuration](#aws-access-configuration)
+  - [Additional functionalities](#additional-functionalities)
+    - [Dependencies update](#dependencies-update)
+    - [Pre-commit](#pre-commit)
+    - [AWS access configuration](#aws-access-configuration)
 - [Kedro visualization of pipelines](#kedro-visualization-of-pipelines)
 - [Pipelines](#pipelines)
   - [Dataset download](#dataset-download)
@@ -39,40 +46,47 @@
 
 # Installation
 
+## Development in VS Code DevContainer
+
+For high reproducibility and ease of development we recommend using VS Code DevContainer. It is a Docker container with all the necessary software installed. It can be run on any machine with Docker and NVIDIA GPU available.
+
+### Requirements
+
+#### Docker
+
+https://docs.docker.com/engine/install/ubuntu/#installation-methods
+
+#### NVIDIA drivers
+
+https://docs.nvidia.com/datacenter/tesla/tesla-installation-notes/index.html#ubuntu-lts
+
+#### NVIDIA docker
+
+https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html#setting-up-nvidia-container-toolkit
+
+#### VS Code
+
+https://code.visualstudio.com/ with extension: `Dev Containers`
+
 ## Environment setup
-```shell
-conda env create  --file conda.yml
-conda activate cell_nuclei_segmentation
-```
 
-For installing only the packages that are necessary for running the project, you should use the following command:
-```shell
-poetry install
-```
+With all the requirements installed, open VS Code and press `Ctrl+Shift+P` to open Command Palette. Type `Open Folder in Container` and select the project directory. Wait for the container to build and install all the necessary software.
 
-If you want to include packages used for testing, linting and development, run the following command:
-```shell
-poetry install --with test,lint,dev
-```
-
-## Dependencies update
+## Additional functionalities
+### Dependencies update
 
 ```shell
 poetry update
 ```
 
-## Pre-commit installation
+### Pre-commit
 
-```shell
-pre-commit install
-pre-commit autoupdate
-```
 To check all files without committing simply run:
 ```shell
 pre-commit run --all-files
 ```
 
-## AWS access configuration
+### AWS access configuration
 
 ```shell
 export AWS_SHARED_CREDENTIALS_FILE="$(pwd)/conf/local/aws/credentials"
