@@ -1,8 +1,7 @@
-FROM nvidia/cuda:11.7.1-devel-ubuntu22.04
+FROM pytorch/pytorch:2.0.1-cuda11.7-cudnn8-runtime
 
 # Install git
-RUN apt-get -y update && apt-get install -y git \
-    python3.10 pip
+RUN apt-get -y update && apt-get install -y git
 
 #Install poetry
 RUN pip install poetry
@@ -12,4 +11,4 @@ ENV POETRY_VIRTUALENVS_CREATE=false
 
 # Install dependencies
 COPY pyproject.toml .
-RUN poetry install --no-interaction
+RUN poetry install --with test,lint,dev --no-interaction
