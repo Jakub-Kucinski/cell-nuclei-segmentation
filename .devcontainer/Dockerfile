@@ -1,7 +1,7 @@
 FROM pytorch/pytorch:2.0.1-cuda11.7-cudnn8-runtime
 
 # Install git
-RUN apt-get -y update && apt-get install -y git
+RUN apt-get -y update && apt-get install -y git unzip wget
 
 #Install poetry
 RUN pip install poetry
