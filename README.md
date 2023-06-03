@@ -8,10 +8,17 @@
 - [Nuclear images dataset](#nuclear-images-dataset)
 - [Libraries and tools](#libraries-and-tools)
 - [Installation](#installation)
+  - [Development in VS Code DevContainer](#development-in-vs-code-devcontainer)
+    - [Requirements](#requirements)
+      - [Docker](#docker)
+      - [NVIDIA drivers](#nvidia-drivers)
+      - [NVIDIA docker](#nvidia-docker)
+      - [VS Code](#vs-code)
   - [Environment setup](#environment-setup)
-  - [Dependencies update](#dependencies-update)
-  - [Pre-commit installation](#pre-commit-installation)
-  - [AWS access configuration](#aws-access-configuration)
+  - [Additional functionalities](#additional-functionalities)
+    - [Dependencies update](#dependencies-update)
+    - [Pre-commit](#pre-commit)
+    - [AWS access configuration](#aws-access-configuration)
 - [Kedro visualization of pipelines](#kedro-visualization-of-pipelines)
 - [Pipelines](#pipelines)
   - [Dataset download](#dataset-download)
@@ -39,40 +46,47 @@
 
 # Installation
 
-## Environment setup
+## Development in VS Code DevContainer
+
+For high reproducibility and ease of development we recommend using VS Code DevContainer. It is a Docker container with all the necessary software installed. It can be run on any machine with Docker and NVIDIA GPU available.
 
 ### Requirements
 
-We strongly recommend using Linux as OS and VS Code as code editor.
-In order to run following code the machine must meet following requirements:
-- `Docker` installed (https://docs.docker.com/engine/install/ubuntu/#installation-methods)
-- `Dev Containers` extension installed in VS Code (https://code.visualstudio.com/docs/devcontainers/tutorial#_install-the-extension)
+#### Docker
 
-### Opening DevContainer
+https://docs.docker.com/engine/install/ubuntu/#installation-methods
 
-In VS Code open Comman Palette (`Ctrl+Alt+P`) and type 'Open Folder in Container`. Choose following command and select directory with project. Wait for all the software to install.
+#### NVIDIA drivers
 
-In order to rebuild container to e.g. apply changes in environment type `Rebuild Container` in Comman Palette.
+https://docs.nvidia.com/datacenter/tesla/tesla-installation-notes/index.html#ubuntu-lts
 
+#### NVIDIA docker
 
-## Dependencies update
+https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html#setting-up-nvidia-container-toolkit
+
+#### VS Code
+
+https://code.visualstudio.com/ with extension: `Dev Containers`
+
+## Environment setup
+
+With all the requirements installed, open VS Code and press `Ctrl+Shift+P` to open Command Palette. Type `Open Folder in Container` and select the project directory. Wait for the container to build and install all the necessary software.
+
+## Additional functionalities
+### Dependencies update
 
 ```shell
 poetry update
 ```
 
-## Pre-commit installation
+### Pre-commit
 
-```shell
-pre-commit install
-pre-commit autoupdate
-```
 To check all files without committing simply run:
 ```shell
 pre-commit run --all-files
 ```
 
-## AWS access configuration
+### AWS access configuration
 
 ```shell
 export AWS_SHARED_CREDENTIALS_FILE="$(pwd)/conf/local/aws/credentials"
