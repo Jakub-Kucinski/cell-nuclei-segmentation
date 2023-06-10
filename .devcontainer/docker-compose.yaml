@@ -1,0 +1,23 @@
+services:
+  dev_env:
+    runtime: nvidia
+    build:
+      context: ../
+      dockerfile: .devcontainer/Dockerfile
+    volumes:
+      - ..:/workspace:cached
+    networks:
+      - cell_nuclei
+    # command: /bin/bash -c "while sleep 1000; do :; done"
+
+  stardist:
+    runtime: nvidia
+    build:
+      context: ../
+      dockerfile: .devcontainer/Dockerfile.stardist
+    networks:
+      - cell_nuclei
+
+networks:
+  cell_nuclei:
+    driver: bridge
