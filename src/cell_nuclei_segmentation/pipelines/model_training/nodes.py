@@ -3,7 +3,7 @@ from typing import Dict
 from stardist import gputools_available
 from stardist.models import Config2D, StarDist2D
 
-from src.cell_nuclei_segmentation.pipelines.data_augmentations.nodes import Augmenter
+from cell_nuclei_segmentation.pipelines.data_augmentations.nodes import Augmenter
 
 
 def create_config(config_params: Dict) -> Config2D:
@@ -15,11 +15,6 @@ def create_config(config_params: Dict) -> Config2D:
     Returns:
         A StarDist config object (Config2D).
     """
-    if "use_gpu" in config_params and config_params["use_gpu"] is True:
-        if not gputools_available():
-            raise RuntimeError(
-                "GPU or gputools not available, cannot use use_gpu=True."
-            )
     return Config2D(**config_params)
 
 
@@ -37,7 +32,7 @@ def create_model(config: Config2D, model_config: Dict) -> StarDist2D:
         if "name" not in model_config:
             raise RuntimeError("Pretrained model requires a name to be specified.")
         model = StarDist2D.from_pretrained(
-            model_config["name"], basedir="data/06_models"
+            model_config["name"],
         )
     else:
         name = model_config["name"] if "name" in model_config else "stardist"
