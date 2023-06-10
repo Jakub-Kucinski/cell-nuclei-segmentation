@@ -1,0 +1,12 @@
+numpy==1.18.5
+wandb==0.15.4
+kedro==0.17.7
+dvc==2.8.1
+fsspec==2022.1.0
+ipykernel==5.5.6
+pytest==7.0.1
+pytest-cov==4.0.0
+kedro-viz==3.16.0
+stardist==0.8.3
+matplotlib==3.3.4
+opencv-python==4.3.0.38
