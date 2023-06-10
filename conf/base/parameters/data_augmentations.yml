@@ -1,0 +1,5 @@
+augmentations:
+  - random_flip:
+      probability: 0.5
+  - random_rotate:
+      probability: 0.5

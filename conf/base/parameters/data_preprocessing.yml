@@ -1,0 +1,18 @@
+preprocessing:
+  train:
+    # - rescale:
+    #     magnification: 20x
+    #     interpolation: INTER_LINEAR
+    - normalize:
+        pmin: 1,
+        pmax: 99.8,
+        axis_norm: (0,1)
+    - fill_label_holes
+  test:
+    # - rescale:
+    #     magnification: 20x
+    #     interpolation: INTER_LINEAR
+    - normalize:
+        pmin: 1,
+        pmax: 99.8,
+        axis_norm: (0,1)

@@ -1,7 +1,7 @@
 [tool.kedro]
 package_name = "cell_nuclei_segmentation"
 project_name = "cell-nuclei-segmentation"
-kedro_init_version = "0.18.5"
+project_version = "0.17.7"
 
 [tool.isort]
 profile = "black"

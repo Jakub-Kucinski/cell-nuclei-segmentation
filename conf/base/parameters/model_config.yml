@@ -1,0 +1,20 @@
+Config2D:
+    n_rays: 32
+    grid: (2,2)
+    use_gpu: True
+    n_channel_in: 3
+    train_dist_loss: mae
+    train_epochs: 5
+    train_foreground_only: 0.9
+    train_learning_rate: 0.0003
+    train_loss_weights: (1, 0.2)
+    train_n_val_patches: None
+    train_patch_size: (256, 256)
+    train_shape_completion: False
+    train_steps_per_epoch: 20
+    train_tensorboard: True
+
+StarDist2D:
+    pretrained: True
+    finetune: False
+    name: 2D_versatile_fluo

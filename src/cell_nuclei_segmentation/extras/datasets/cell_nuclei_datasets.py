@@ -2,8 +2,11 @@ import os
 from pathlib import PurePosixPath
 
 import fsspec
+import numpy as np
+import pandas as pd
 from kedro.io import AbstractDataSet
 from kedro.io.core import get_filepath_str, get_protocol_and_path
+from PIL import Image
 
 
 class CellNucleiRawDataset(AbstractDataSet):
@@ -20,7 +23,29 @@ class CellNucleiRawDataset(AbstractDataSet):
         self.url = save_args["url"] if "url" in save_args else None
 
     def _load(self):
-        return set()
+        def load_images(image_folder_path, df):
+            images = dict()
+            for image_name in df["Image_Name"].values:
+                image_path = image_folder_path + "/" + image_name + ".tif"
+                image = Image.open(image_path)
+                image = np.array(image)
+                images[image_name] = image
+            return images
+
+        df = pd.read_csv(self._fs.open(self._path / "image_descriptions.csv"), sep=";")
+        train_df = df[df["Train-/Testset split"] == "train"]
+        test_df = df[df["Train-/Testset split"] == "test"]
+        train_df = train_df.reset_index(drop=True)
+        test_df = test_df.reset_index(drop=True)
+        train_images = load_images(self._path + "/rawimages", train_df)
+        test_images = load_images(self._path + "/rawimages", test_df)
+        train_masks = load_images(self._path + "/groundtruth", train_df)
+        test_masks = load_images(self._path + "/groundtruth", test_df)
+        data = dict(
+            train=dict(images=train_images, masks=train_masks, df=train_df),
+            test=dict(images=test_images, masks=test_masks, df=test_df),
+        )
+        return data
 
     def _save(self, data):
         def unzip_and_clean(save_path):
