@@ -1,9 +1,7 @@
 from typing import Dict
 
-from stardist import gputools_available
 from stardist.models import Config2D, StarDist2D
 
-from cell_nuclei_segmentation.pipelines.data_augmentations.nodes import Augmenter
 from cell_nuclei_segmentation.extras.datasets.stardist_model import StardistModel
 
 
@@ -40,7 +38,5 @@ def create_model(config: Config2D, model_config: Dict) -> StarDist2D:
     return model
 
 
-def test_model(
-    model: StardistModel
-):
+def test_model(model: StardistModel):
     return

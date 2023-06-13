@@ -1,14 +1,14 @@
 import os
+import zipfile
 from pathlib import PurePosixPath
 
 import fsspec
 import numpy as np
 import pandas as pd
+import wget
 from kedro.io import AbstractDataSet
 from kedro.io.core import get_filepath_str, get_protocol_and_path
 from PIL import Image
-import wget
-import zipfile
 
 
 class CellNucleiRawDataset(AbstractDataSet):

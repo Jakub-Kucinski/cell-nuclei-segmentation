@@ -2,10 +2,8 @@ import os
 from pathlib import PurePosixPath
 
 import fsspec
-import numpy as np
-import pandas as pd
 from kedro.io import AbstractDataSet
-from kedro.io.core import get_filepath_str, get_protocol_and_path
+from kedro.io.core import get_protocol_and_path
 from stardist.models import StarDist2D
 
 
@@ -22,6 +20,7 @@ class StardistModel(AbstractDataSet):
     def _load(self):
         # at the beginning of the node
         model = StarDist2D(None, name=self.name, basedir=str(self._path))
+        return model
 
     def _save(self, model):
         # at the end of the node
