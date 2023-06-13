@@ -12,5 +12,6 @@ def create_pipeline(**kwargs) -> Pipeline:
                 outputs="CellNucleiRaw",
                 name="dummy_download",
             )
-        ]
+        ],
+        tags="model_validation",
     )

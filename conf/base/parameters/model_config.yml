@@ -18,3 +18,10 @@ StarDist2D:
     pretrained: True
     finetune: False
     name: 2D_versatile_fluo
+
+TrainingParams:
+    epochs: 5
+    classes: auto
+    seed:
+    steps_per_epoch:
+    workers: 1

@@ -1,6 +1,6 @@
 from kedro.pipeline import Pipeline, node, pipeline
 
-from .nodes import create_config, create_model, test_model
+from .nodes import create_config, create_model, model_training, treshold_optimization
 
 
 def create_pipeline(**kwargs) -> Pipeline:
@@ -19,10 +19,21 @@ def create_pipeline(**kwargs) -> Pipeline:
                 name="create_model",
             ),
             node(
-                func=test_model,
-                inputs=["StardistModel"],
-                outputs=None,
-                name="test_model",
+                func=model_training,
+                inputs=[
+                    "StardistModel",
+                    "train_data",
+                    "augmenter",
+                    "params:TrainingParams",
+                ],
+                outputs="StardistModelFineTuned",
+                name="model_training",
             ),
-        ]
+            node(
+                func=treshold_optimization,
+                inputs=["StardistModelFineTuned", "train_data", "test_data"],
+                outputs="optimized_tresholds",
+                name="treshold_optimization",
+            ),
+        ],
     )

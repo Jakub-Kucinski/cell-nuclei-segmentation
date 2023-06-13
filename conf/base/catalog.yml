@@ -7,4 +7,8 @@ CellNucleiRaw:
 
 StardistModel:
   type: cell_nuclei_segmentation.extras.datasets.stardist_model.StardistModel
-  path: data/06_models
+  path: data/06_models/pretrained/
+
+StardistModelFineTuned:
+  type: cell_nuclei_segmentation.extras.datasets.stardist_model.StardistModel
+  path: data/06_models/finetuned/

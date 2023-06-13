@@ -36,7 +36,7 @@ class Augmenter:
 
         return img, mask
 
-    def random_rotation(
+    def random_rotate(
         self, img: np.ndarray, mask: np.ndarray, probability: float = 0.5
     ) -> Tuple[np.ndarray, np.ndarray]:
         """Randomly rotate image and mask.

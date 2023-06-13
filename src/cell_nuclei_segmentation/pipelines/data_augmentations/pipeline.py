@@ -12,5 +12,6 @@ def create_pipeline(**kwargs) -> Pipeline:
                 outputs="augmenter",
                 name="create_augmenter",
             )
-        ]
+        ],
+        tags="model_validation",
     )

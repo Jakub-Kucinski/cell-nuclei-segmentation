@@ -8,6 +8,10 @@ from stardist import fill_label_holes
 def preprocess_data(data: Dict, transformations: List) -> Dict:
     images_dict = data["images"]
     masks_dict = data["masks"]
+    images_dict = {
+        name: cv2.cvtColor(img, cv2.COLOR_RGB2GRAY) if len(img.shape) == 3 else img
+        for name, img in images_dict.items()
+    }
     df = data["df"]
     for transformation in transformations:
         if isinstance(transformation, str):

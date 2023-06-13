@@ -6,6 +6,7 @@ preprocessing:
     - normalize:
         pmin: 1
         pmax: 99.8
+        axis: [0,1]
     - fill_label_holes
   test:
     # - rescale:
@@ -14,3 +15,4 @@ preprocessing:
     - normalize:
         pmin: 1
         pmax: 99.8
+        axis: [0,1]
