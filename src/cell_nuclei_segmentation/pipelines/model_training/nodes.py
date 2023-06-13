@@ -4,6 +4,7 @@ from stardist import gputools_available
 from stardist.models import Config2D, StarDist2D
 
 from cell_nuclei_segmentation.pipelines.data_augmentations.nodes import Augmenter
+from cell_nuclei_segmentation.extras.datasets.stardist_model import StardistModel
 
 
 def create_config(config_params: Dict) -> Config2D:
@@ -35,25 +36,11 @@ def create_model(config: Config2D, model_config: Dict) -> StarDist2D:
             model_config["name"],
         )
     else:
-        name = model_config["name"] if "name" in model_config else "stardist"
-        model = StarDist2D(config, name=name, basedir="data/06_models")
+        raise NotImplementedError
     return model
 
 
-def train_model(
-    model: StarDist2D, train_data: Dict, augmenter: Augmenter, model_config: Dict
-) -> StarDist2D:
-    """Train a StarDist model object from a config object.
-
-    Args:
-        model: A StarDist model object (StarDist2D).
-        train_data: A StarDist data object (StarDistData2D) for training.
-        augmenter: An augmenter object (Augmenter) for data augmentation.
-        model_config: Dictionary of parameters to be used to train the model object.
-
-    Returns:
-        A StarDist model object (StarDist2D).
-    """
-    if "finetune" in model_config and model_config["finetune"] is True:
-        model.train(train_data["images"], train_data["masks"], augmenter=augmenter)
-    return model
+def test_model(
+    model: StardistModel
+):
+    return

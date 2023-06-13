@@ -4,3 +4,7 @@ CellNucleiRaw:
   save_args:
     source: website
     url: https://www.ebi.ac.uk/biostudies/files/S-BSST265/dataset.zip
+
+StardistModel:
+  type: cell_nuclei_segmentation.extras.datasets.stardist_model.StardistModel
+  path: data/06_models

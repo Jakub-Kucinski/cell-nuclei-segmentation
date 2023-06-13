@@ -29,7 +29,7 @@ class CellNucleiRawDataset(AbstractDataSet):
             images = dict()
             for image_name in df["Image_Name"].values:
                 image_path = image_folder_path / f"{image_name}.tif"
-                image = Image.open(image_path)
+                image = Image.open(str(image_path))
                 image = np.array(image)
                 images[image_name] = image
             return images

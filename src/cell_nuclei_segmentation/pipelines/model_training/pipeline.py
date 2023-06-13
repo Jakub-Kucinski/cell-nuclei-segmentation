@@ -1,6 +1,6 @@
 from kedro.pipeline import Pipeline, node, pipeline
 
-from .nodes import create_config, create_model, train_model
+from .nodes import create_config, create_model, test_model
 
 
 def create_pipeline(**kwargs) -> Pipeline:
@@ -15,14 +15,14 @@ def create_pipeline(**kwargs) -> Pipeline:
             node(
                 func=create_model,
                 inputs=["Config2D", "params:StarDist2D"],
-                outputs="StarDist2D",
+                outputs="StardistModel",
                 name="create_model",
             ),
             node(
-                func=train_model,
-                inputs=["StarDist2D", "train_data", "augmenter", "params:StarDist2D"],
-                outputs="StarDist2D_trained",
-                name="train_model",
+                func=test_model,
+                inputs=["StardistModel"],
+                outputs=None,
+                name="test_model",
             ),
         ]
     )
