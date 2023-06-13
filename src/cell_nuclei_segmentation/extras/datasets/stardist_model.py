@@ -11,11 +11,12 @@ class StardistModel(AbstractDataSet):
     """``StardistModel`` class for loading and saving Stardist model
     in Kedro data catalog."""
 
-    def __init__(self, path):
+    def __init__(self, path, name):
         protocol, path = get_protocol_and_path(path)
         self._protocol = protocol
         self._path = PurePosixPath(path)
         self._fs = fsspec.filesystem(self._protocol)
+        self.name = name
 
     def _load(self):
         # at the beginning of the node

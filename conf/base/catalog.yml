@@ -8,7 +8,9 @@ CellNucleiRaw:
 StardistModel:
   type: cell_nuclei_segmentation.extras.datasets.stardist_model.StardistModel
   path: data/06_models/pretrained/
+  name: 2D_versatile_fluo
 
 StardistModelFineTuned:
   type: cell_nuclei_segmentation.extras.datasets.stardist_model.StardistModel
   path: data/06_models/finetuned/
+  name: 2D_versatile_fluo
