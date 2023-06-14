@@ -20,8 +20,8 @@ StarDist2D:
     name: 2D_versatile_fluo
 
 TrainingParams:
-    epochs: 5
+    epochs: 10
     classes: auto
-    seed:
-    steps_per_epoch:
+    seed: 2137
+    steps_per_epoch: 50
     workers: 1
