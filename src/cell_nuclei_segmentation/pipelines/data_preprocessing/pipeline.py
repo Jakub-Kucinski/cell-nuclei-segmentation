@@ -30,5 +30,5 @@ def create_pipeline(**kwargs) -> Pipeline:
                 name="test_data_preprocessing",
             ),
         ],
-        tags="model_validation",
+        tags=["model_validation", "results_visualization"],
     )

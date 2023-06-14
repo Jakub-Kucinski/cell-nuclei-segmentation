@@ -10,6 +10,7 @@ from cell_nuclei_segmentation.pipelines import (
     data_preprocessing,
     model_evaluation,
     model_training,
+    results_visualization,
 )
 
 
@@ -27,16 +28,19 @@ def register_pipelines() -> Dict[str, Pipeline]:
     data_processing_pipeline = data_preprocessing.create_pipeline()
     model_training_pipeline = model_training.create_pipeline()
     model_evaluation_pipeline = model_evaluation.create_pipeline()
+    results_visualization_pipeline = results_visualization.create_pipeline()
 
     return {
         "__default__": data_download_pipeline
         + data_augmentations_pipeline
         + data_processing_pipeline
         + model_training_pipeline
-        + model_evaluation_pipeline,
+        + model_evaluation_pipeline
+        + results_visualization_pipeline,
         "data_download": data_download_pipeline,
         "data_augmentations": data_augmentations_pipeline,
         "data_processing_pipeline": data_processing_pipeline,
         "model_training": model_training_pipeline,
         "model_evaluation": model_evaluation_pipeline,
+        "results_visualization": results_visualization_pipeline,
     }
