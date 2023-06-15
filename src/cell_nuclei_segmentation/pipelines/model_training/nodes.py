@@ -41,7 +41,7 @@ def create_model(config: Config2D, model_config: Dict) -> StarDist2D:
 
 def model_training(
     model: StardistModel, train_data: Dict, augmenter: Augmenter, training_params: Dict
-):
+) -> StarDist2D:
     """Train the StarDist model.
 
     Args:
@@ -49,7 +49,7 @@ def model_training(
         train_data: Training data.
 
     Returns:
-        None
+        A trained StarDist model object.
     """
     image_names = train_data["images"].keys()
     X_train = [train_data["images"][img_name] for img_name in image_names]

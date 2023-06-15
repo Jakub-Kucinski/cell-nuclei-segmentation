@@ -6,6 +6,19 @@ from stardist import fill_label_holes
 
 
 def preprocess_data(data: Dict, transformations: List) -> Dict:
+    """Preprocess data with provided list of transforms.
+
+    Args:
+        data (Dict): Dataset.
+        transformations (List): list of transformations
+
+    Raises:
+        ValueError: Transformation is a string different to `fill_label_holes`
+        ValueError: Transformation is different than `normalize` and `rescale`
+
+    Returns:
+        Dict: Preprocessed data divided into images, masks and data frame
+    """
     images_dict = data["images"]
     masks_dict = data["masks"]
     images_dict = {
@@ -83,6 +96,15 @@ def preprocess_data(data: Dict, transformations: List) -> Dict:
 
 
 def get_train_test_data_and_params(data: Dict, params: Dict) -> Dict:
+    """Method returning train and tests sets with their parameters.
+
+    Args:
+        data (Dict): Data.
+        params (Dict): Data parameters
+
+    Returns:
+        Dict:
+    """
     train_preprocessing_params = params["train"]
     test_preprocessing_params = params["test"]
     train_data = data["train"]

@@ -44,6 +44,16 @@ def create_images(
     test_data: Dict,
     image_names: List,
 ) -> Dict:
+    """Plot predictions and save the images.
+
+    Args:
+        predictions (List): model predictions.
+        test_data (Dict): Test data provided to the model.
+        image_names (List): Names of the tests images.
+
+    Returns:
+        Dict:
+    """
     lbl_cmap = random_label_cmap()
     for (labels, details), image_name in zip(predictions, image_names):
         _example(
