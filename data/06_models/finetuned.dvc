@@ -1,0 +1,5 @@
+outs:
+- md5: 0c30a85b35e2240d06b23fc14af947e0.dir
+  size: 17458652
+  nfiles: 8
+  path: finetuned
