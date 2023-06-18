@@ -1,0 +1,6 @@
+EvaluationMetrics:
+  names:
+    - DiceCoefficient
+    - IntersectionOverUnion
+    - MeanAveragePrecision
+  n_tresholds: 20

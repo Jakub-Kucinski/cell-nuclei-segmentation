@@ -1,0 +1,12 @@
+services:
+
+  segmentation:
+    container_name: cell_nuclei
+    build: .
+    runtime: nvidia
+    volumes:
+      - type: bind
+        source: .
+        target: /workspace
+    user: 1000:1000
+    working_dir: /workspace

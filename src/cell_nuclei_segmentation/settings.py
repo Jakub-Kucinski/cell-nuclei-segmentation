@@ -1,3 +1,9 @@
+"""Project settings."""
+from cell_nuclei_segmentation.hooks import ProjectHooks
+
+# Instantiate and list your project hooks here
+HOOKS = (ProjectHooks(),)
+
 """Project settings. There is no need to edit this file unless you want to change values
 from the Kedro defaults. For further information, including these default values, see
 https://kedro.readthedocs.io/en/stable/kedro_project_setup/settings.html."""
