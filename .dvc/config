@@ -1,0 +1,4 @@
+[core]
+    remote = cell-nuclei-s3
+['remote "cell-nuclei-s3"']
+    url = s3://cell-nuclei
