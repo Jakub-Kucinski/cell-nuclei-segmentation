@@ -88,22 +88,18 @@ def preprocess_data(data: Dict, transformations: List) -> Dict:
     return {"images": images_dict, "masks": masks_dict, "df": df}
 
 
-# def train_test_data_to_dict(train_data: Dict, test_data: Dict) -> Dict:
-#     return {
-#         "train": train_data,
-#         "test": test_data,
-#     }
-
-
 def get_train_test_data_and_params(data: Dict, params: Dict) -> Dict:
     """Method returning train and tests sets with their parameters.
 
     Args:
-        data (Dict): Data.
-        params (Dict): Data parameters
+        data (Dict): Dataset.
+        params (Dict): Preprocessing parameters.
 
     Returns:
-        Dict:
+        train_preprocessing_params: Train preprocessing parameters.
+        train_data: Train data.
+        test_preprocessing_params: Test preprocessing parameters.
+        test_data: Test data.
     """
     train_preprocessing_params = params["train"]
     test_preprocessing_params = params["test"]

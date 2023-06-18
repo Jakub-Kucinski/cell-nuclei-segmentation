@@ -1,4 +1,4 @@
-from typing import Tuple
+from typing import Dict, Tuple
 
 import numpy as np
 
@@ -6,11 +6,11 @@ import numpy as np
 class Augmenter:
     """Augmenter class for augmenting images and masks."""
 
-    def __init__(self, augmentation_config: dict):
+    def __init__(self, augmentation_config: Dict):
         """Initialize Augmenter class.
 
         Args:
-            probability: Probability of applying augmentation.
+            augmentation_config: Configuration for augmentations.
         """
         self.augmentation_config = augmentation_config
 
@@ -22,6 +22,7 @@ class Augmenter:
         Args:
             img: Image to be flipped.
             mask: Mask to be flipped.
+            probability: Probability of flipping image and mask.
 
         Returns:
             Tuple of flipped image and mask in the same orientation.
@@ -44,6 +45,7 @@ class Augmenter:
         Args:
             img: Image to be rotated.
             mask: Mask to be rotated.
+            probability: Probability of rotating image and mask.
 
         Returns:
             Tuple of rotated image and mask in the same orientation.
@@ -63,6 +65,16 @@ class Augmenter:
         img_intensity_scale_range: Tuple[float, float] = (0.6, 2.0),
         img_intensity_bias_range: Tuple[float, float] = (-0.2, 2.0),
     ) -> Tuple[np.ndarray, np.ndarray]:
+        """Randomly change image intensity.
+
+        Args:
+            img: Image to be changed.
+            mask: Mask to be changed.
+            img_intensity_scale_range: Range of image intensity scale.
+            img_intensity_bias_range: Range of image intensity bias.
+
+        Returns:
+            Tuple of changed image and mask."""
         img = img * np.random.uniform(*img_intensity_scale_range) + np.random.uniform(
             *img_intensity_bias_range
         )
@@ -95,13 +107,13 @@ class Augmenter:
         return img, mask
 
 
-def create_augmenter(augmentation_config: dict) -> Augmenter:
-    """Create augmenter function.
+def create_augmenter(augmentation_config: Dict) -> Augmenter:
+    """Create augmenter object.
 
     Args:
-        probability: Probability of applying augmentation.
+        augmentation_config: Configuration for augmentations.
 
     Returns:
-        Augmenter function.
+        Augmenter object.
     """
     return Augmenter(augmentation_config)

@@ -4,6 +4,11 @@ from .nodes import dummy_download
 
 
 def create_pipeline(**kwargs) -> Pipeline:
+    """Function creating Data Download pipeline.
+
+    Returns:
+        Pipeline: Created Data Download pipeline.
+    """
     return pipeline(
         [
             node(

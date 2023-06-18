@@ -47,6 +47,8 @@ def model_training(
     Args:
         model: A StarDist model object (StardistModel).
         train_data: Training data.
+        augmenter: Data augmentation object.
+        training_params: Dictionary of parameters to be used for training.
 
     Returns:
         A trained StarDist model object.
@@ -64,8 +66,8 @@ def model_training(
     return model
 
 
-def treshold_optimization(model: StardistModel, train_data: Dict, test_data: Dict):
-    """Optimize the treshold for the StarDist model.
+def threshold_optimization(model: StardistModel, train_data: Dict, test_data: Dict):
+    """Optimize the threshold for the StarDist model.
 
     Args:
         model: A StarDist model object (StardistModel).
@@ -73,10 +75,10 @@ def treshold_optimization(model: StardistModel, train_data: Dict, test_data: Dic
         test_data: Test data.
 
     Returns:
-        None
+        A dictionary of optimized thresholds.
     """
     image_names = train_data["images"].keys()
     X_val = [train_data["images"][img_name] for img_name in image_names]
     Y_val = [train_data["masks"][img_name] for img_name in image_names]
-    optimized_tresholds = model.optimize_thresholds(X_val, Y_val)
-    return optimized_tresholds
+    optimized_thresholds = model.optimize_thresholds(X_val, Y_val)
+    return optimized_thresholds
