@@ -95,7 +95,7 @@ Source code is meant to be run in a Docker container and requires NVIDIA drivers
 https://docs.docker.com/engine/install/ubuntu/#installation-methods
 
 #### NVIDIA drivers
-As StarDist uses tensorflow:2.3 which requires CUDA TODO, we recommend installing NVIDIA drivers version TODO.
+As StarDist uses tensorflow:2.3 which requires CUDA 10.1, we recommend installing NVIDIA drivers version 10.1.
 https://docs.nvidia.com/datacenter/tesla/tesla-installation-notes/index.html#ubuntu-lts
 
 #### NVIDIA docker
