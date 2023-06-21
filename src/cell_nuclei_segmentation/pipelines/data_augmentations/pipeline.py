@@ -18,4 +18,5 @@ def create_pipeline(**kwargs) -> Pipeline:
                 name="create_augmenter",
             )
         ],
+        tags="model_training",
     )

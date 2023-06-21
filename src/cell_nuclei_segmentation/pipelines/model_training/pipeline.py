@@ -41,4 +41,5 @@ def create_pipeline(**kwargs) -> Pipeline:
                 name="threshold_optimization",
             ),
         ],
+        tags="model_training",
     )

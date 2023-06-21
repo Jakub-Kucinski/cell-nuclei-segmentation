@@ -18,5 +18,5 @@ def create_pipeline(**kwargs) -> Pipeline:
                 name="dummy_download",
             )
         ],
-        tags=["model_validation", "results_visualization"],
+        tags=["model_training", "model_validation", "results_visualization"],
     )
