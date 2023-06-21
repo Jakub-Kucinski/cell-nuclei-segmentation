@@ -20,7 +20,6 @@ def create_pipeline(**kwargs) -> Pipeline:
             node(
                 calc_metrics,
                 inputs=[
-                    "StardistModelFineTuned",
                     "test_data",
                     "Test_prediction",
                     "Test_masks",

@@ -3,4 +3,4 @@ EvaluationMetrics:
     - DiceCoefficient
     - IntersectionOverUnion
     - MeanAveragePrecision
-  n_tresholds: 20
+  n_thresholds: 20

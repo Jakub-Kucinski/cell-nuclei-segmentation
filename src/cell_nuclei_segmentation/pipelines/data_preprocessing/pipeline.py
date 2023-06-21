@@ -4,6 +4,11 @@ from .nodes import get_train_test_data_and_params, preprocess_data
 
 
 def create_pipeline(**kwargs) -> Pipeline:
+    """Function creating Data Processing pipeline.
+
+    Returns:
+        Pipeline: Created Data Processing pipeline.
+    """
     return pipeline(
         [
             node(
@@ -30,5 +35,5 @@ def create_pipeline(**kwargs) -> Pipeline:
                 name="test_data_preprocessing",
             ),
         ],
-        tags=["model_validation", "results_visualization"],
+        tags=["model_training", "model_validation", "results_visualization"],
     )

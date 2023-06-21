@@ -9,7 +9,7 @@ from tqdm import tqdm
 from cell_nuclei_segmentation.extras.datasets.stardist_model import StardistModel
 
 
-def make_predictions(model: StardistModel, test_data: Dict) -> Tuple[Dict, Dict]:
+def make_predictions(model: StardistModel, test_data: Dict) -> Tuple[Dict, Dict, Dict]:
     """Make predictions using the StarDist model.
 
     Args:
@@ -17,7 +17,8 @@ def make_predictions(model: StardistModel, test_data: Dict) -> Tuple[Dict, Dict]
         test_data: Test data.
 
     Returns:
-        A tuple of dictionaries containing the predictions and the ground truth.
+        A tuple of dictionaries containing the predicted masks, ground truth masks and \
+predicted details.
     """
     image_names = test_data["images"].keys()
     X_test = [test_data["images"][img_name] for img_name in image_names]
@@ -34,12 +35,24 @@ def make_predictions(model: StardistModel, test_data: Dict) -> Tuple[Dict, Dict]
     )
 
 
-def _average_precision(predictions: List, masks: List, tresholds: np.array) -> float:
+def _average_precision(predictions: List, masks: List, thresholds: np.array) -> float:
+    """Calculate average precision for a given set of predictions and masks over a \
+range of thresholds.
+
+    Args:
+        predictions: A list of predicted masks.
+        masks: A list of ground truth masks.
+        thresholds: A numpy array of thresholds to be used for calculating average \
+precision.
+
+    Returns:
+        Average precision.
+    """
     precisions = []
     recalls = []
-    for treshold in tresholds:
+    for threshold in thresholds:
         matching_results = matching_dataset(
-            masks, predictions, thresh=treshold, show_progress=False
+            masks, predictions, thresh=threshold, show_progress=False
         )
         precisions.append(matching_results.precision)
         recalls.append(matching_results.recall)
@@ -50,19 +63,30 @@ def _average_precision(predictions: List, masks: List, tresholds: np.array) -> f
 
 
 def _mean_average_precision(
-    predictions: Dict, true_masks: Dict, df: pd.DataFrame, n_tresholds: int
-) -> Tuple[Dict, Dict]:
+    predictions: Dict, true_masks: Dict, df: pd.DataFrame, n_thresholds: int
+) -> float:
+    """Calculate mean average precision for a given set of predictions and masks.
+
+    Args:
+        predictions: A dictionary containing the predictions.
+        true_masks: A dictionary containing the ground truth.
+        df: A dataframe containing the image names and testset classes.
+        n_thresholds: Number of thresholds to be used for calculating average \
+precision.
+
+    Returns:
+        Mean average precision.
+    """
     ap_values = []
     for name, df_class in tqdm(df.groupby("Testset class")):
         preds = itemgetter(*df_class["Image_Name"].values)(predictions)
         masks = itemgetter(*df_class["Image_Name"].values)(true_masks)
-        ap = _average_precision(preds, masks, np.linspace(0, 1, n_tresholds))
+        ap = _average_precision(preds, masks, np.linspace(0, 1, n_thresholds))
         ap_values.append(ap)
     return np.array(ap_values).mean()
 
 
 def calc_metrics(
-    model: StardistModel,
     test_data: Dict,
     predictions: Dict,
     masks: Dict,
@@ -71,12 +95,13 @@ def calc_metrics(
     """Calculate evaluation metrics.
 
     Args:
+        test_data: Test data.
         predictions: A dictionary containing the predictions.
         masks: A dictionary containing the ground truth.
-        evaluation_metrics: A list of evaluation metrics.
+        evaluation_metrics: A dict of evaluation metrics.
 
     Returns:
-        A dictionary containing the evaluation metrics.
+        A dictionary containing evaluated metrics.
     """
     image_names = masks.keys()
     matching_results = matching_dataset(
@@ -92,7 +117,7 @@ def calc_metrics(
             )
         elif metric == "MeanAveragePrecision":
             metrics[metric] = _mean_average_precision(
-                predictions, masks, test_data["df"], evaluation_metrics["n_tresholds"]
+                predictions, masks, test_data["df"], evaluation_metrics["n_thresholds"]
             )
     print(metrics)
     return metrics

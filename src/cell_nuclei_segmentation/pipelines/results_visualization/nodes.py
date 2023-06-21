@@ -12,9 +12,10 @@ def predict(model: StardistModel, test_data: Dict, image_names: List) -> List:
     Args:
         model: A StarDist model object (StardistModel).
         test_data: Test data.
+        image_names: Names of the test images.
 
     Returns:
-        A tuple of dictionaries containing the predictions and the ground truth.
+        List: Predictions.
     """
     images = [test_data["images"][image_name] for image_name in image_names]
     predictions = [model.predict_instances(image) for image in images]
@@ -43,7 +44,7 @@ def create_images(
     predictions: List,
     test_data: Dict,
     image_names: List,
-) -> Dict:
+) -> None:
     """Plot predictions and save the images.
 
     Args:
@@ -52,7 +53,7 @@ def create_images(
         image_names (List): Names of the tests images.
 
     Returns:
-        Dict:
+        None
     """
     lbl_cmap = random_label_cmap()
     for (labels, details), image_name in zip(predictions, image_names):
